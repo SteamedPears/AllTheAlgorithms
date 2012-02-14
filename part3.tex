@@ -1,0 +1,14 @@
+{\bf Part 3 - Solving Recurrences}
+
+{\bf The Master Theorem}
+
+If $T(n) = aT(\frac{n}{b}) + O(n^d)$, then
+
+\begin{math}
+T(n) = \left\{
+\begin{array}{l l}
+O(n^d)       & \quad \text{if} d > log_ba \\
+O(n^d logn)  & \quad \text{if} d = log_ba \\
+O(n^{log_ba}) & \quad \text{if} d < log_ba \\
+\end{array} \right.
+\end{math}
