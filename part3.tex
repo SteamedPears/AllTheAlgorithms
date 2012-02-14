@@ -39,8 +39,8 @@ We can use this information to solve the recurrence:
 
 \begin{align*}
 T(n)
-&= \sum\limits_{i=0}^{log_bn} 
+&= \summ{i=0}{log_bn} 
 (\text{\# nodes at level } i) 
 (\text{work done at level } i) \\
-&= \sum\limits_{i=0}^{log_bn} a^i f(\frac{n}{b^i})
+&= \summ{i=0}{log_bn} a^i f(\frac{n}{b^i})
 \end{align*}
