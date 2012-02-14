@@ -20,10 +20,14 @@ the array, so we have a lower bound of $\Omega (n)$ time.
 But is this possible in general, for any value of $i$?  Yes.
 
 Suppose in linear time we can find element $x$ such that
-%
-\begin{displaymath}
-A = | < x | x | > x |
-\end{displaymath}
+
+{
+  % Current graphic is hand-drawn by John Howat.
+  % Should replace asap with a nicer diagram
+  \includegraphics[scale=0.6]{selection}
+  %\caption{Desirable properties of element x.}
+  \label{fig:selection}
+}
 
 $x$ is somewhere around the middle of the array, and is preceded only
 by elements smaller than $x$, and followed only by elements larger
@@ -51,9 +55,22 @@ This $x$ has the properties we needed above.
 \end{claim}
 
 \begin{proof}
-We know that $\frac{1}{2}$ of $m_i$ are smaller than $x$, and we know $\frac{n}{10}$ of $m_i$ are $ \leq x $.
-\end{proof}
 
+We know that $\frac{1}{2}$ of $m_j$ are smaller than $x$, and since
+there are $ \frac{n}{5} m_j$s, we know $\frac{n}{10}$ of $m_j$ are $
+\leq x $.
+
+So for each $m_j$ where $m_j \leq x$ 
+
+\begin{itemize} 
+
+\item there are 3 elements that are $ \leq m_j $
+\item so 3 (or more) elements are $ \leq x $
+
+\end{itemize}
+%
+\end{proof}
+%
 Now we must put $x$ into its position in the array using partitioning.
 As a side note, partitioning is used in quicksort.
 
@@ -78,6 +95,10 @@ properly located at position $q$ in $A$.  We are left with 3 cases:
 
 \end{enumerate}
 
+This last step gives a recurrence of $ T \left( \frac{7n}{10} \right)
+$ in the worst case because at least $ \frac{3n}{10} $ elements in $A$
+are smaller than $x$.
+
 \section{Analysis}
 
 We now have the following recurrence:
@@ -85,8 +106,6 @@ We now have the following recurrence:
 \begin{displaymath}
 T(n) = T \left( \frac{n}{5} \right) +T \left( \frac{7n}{10} \right) + O(n)
 \end{displaymath}
-
-% Where the heck does the 7n/10 come from??
 
 \begin{claim}
 $ T(n) \leq cn $
@@ -118,4 +137,16 @@ Secondly, notice:
 %
 \begin{displaymath}
 \frac{1}{5} + \frac{7}{10} = \frac{9}{10} < 1
+\end{displaymath}
+
+Dividing into groups of 3 doesn't work because:
+%
+\begin{displaymath}
+T(n) = O(n) + T(n/3) + T(2n/3) = \Theta(nlogn)
+\end{displaymath}
+
+Dividing into groups of 7 actually does work because:
+%
+\begin{displaymath}
+T(n) = O(n) + T(n/7) + T(5n/7) = \Theta(n)
 \end{displaymath}
