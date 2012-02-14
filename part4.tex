@@ -81,16 +81,18 @@ it would be nice to be able to actually construct one given a list of $n$
 elements. A naive approach is to simply call $insert(x)$ on every element
 in the list. However, since $insert(x)$ requires $O(\log n)$ time, this will
 require $O(n \log n)$ time. These seems pretty bad, considering one can find
-the best element in a list by brute force in $O(n)$ time. Can we achieve this?
+the best element in a list by brute force in $O(n)$ time. Can we achieve a
+construction time comparable to the brute force time?
 Instead of building the heap top down with $insert$, we can build it from the
 bottom up. Remark that a single element is a valid heap. If we were to try to
-build from the bottom up, we would first take the last $n/2$ elements in the
-list. All of these elements are their own valid heaps, and we therefore do not
-need to do anything to them. To add the next $n/4$ elements, we simply perform
-the procedure we did in $pop-best$ to bring the fix the fact that $y$ might
-be violating the heap property, because we know all the elements below it are
-valid heaps. By repeating this process until we are just adding the last
-element, we will construct the entire heap. 
+build from the bottom up, we could first take the last $n/2$ elements in the
+list. All of these elements are their own valid and complete heaps,
+and we therefore do not need to do anything to them.
+To add the next $n/4$ elements, we simply perform
+the procedure we did in $pop-best$ to fix the fact that the new root might
+be violating the heap property, knowing that all the elements below it are
+valid heaps. By repeating this process until we reach the first element in
+the list, we will have created a valid heap on $n$ elements.
 
 Because we are doing very little work for the majority of the elements, we end
 up doing only $O(n)$ work over all, which is optimal, as this is the amount of
@@ -98,13 +100,14 @@ time required to find the best element.
 
 \section{Heapsort}
 
-Another nice property of a heap is that once a heap has been implemented
-it provides a very simple procedure to be used to sort elements.
+Another nice property of a heap is that once one has been implemented,
+it provides a very simple procedure for sort elements.
 A simple algorithm to do this to construct a heap on the list and then simply
-return and then pop the best element over and over until there are no more.
+return $best$ and then call $pop-best$ over and over until there are no more
+elements in the heap.
 In fact, since our algorithm for building the heap is in-place and takes $O(n)$
 time, and our remove method leaves the best element at the end of the array,
-by simply building a heap on the input array and calling $pop-best()$ $n$ times,
+by simply building a heap on the input array and calling $pop-best$ $n$ times,
 we will be left with a reverse sorted array in $O(n \log n)$ time. 
 This algorithm is particularly excellent because it requires no extra space,
 runs deterministically, and is worst-case optimal.
