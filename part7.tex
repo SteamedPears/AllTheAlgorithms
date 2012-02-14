@@ -75,3 +75,54 @@ and edges in another graph.
 A \emph{connected component} is a connected subgraph which does
 not disconnect any adjacent vertices.  It should be easy to see that a
 connected graph has exactly one connected component.
+
+\section{Representation}
+
+\subsection{Adjacency List}
+
+\subsection{Adjacency Matrix}
+
+Another representation of a graph is as a square matrix with $n$ rows
+and columns where the element at row $i$ and column $j$ is 1 if there
+is an edge between $v_i$ and $v_j$ and 0 otherwise.  For example:
+
+{
+  \includegraphics[scale=0.2]{SimpleGraph}
+  %\caption{Demonstrates a simple graph}
+  \label{fig:SimpleGraph}
+}
+
+can be represented
+
+\[
+\left[
+\begin{array}{cccc}
+  & a & b & c \\
+a & 0 & 1 & 0 \\
+b & 1 & 0 & 1 \\
+c & 0 & 1 & 0
+\end{array}
+\right]
+\]
+
+As for directed graphs, row $i$ column $j$ is 1 if there exists an
+edge $(v_i,v_j)$.  For example:
+
+{
+  \includegraphics[scale=0.2]{DiGraph}
+  %\caption{Demonstrates a directed graph}
+  \label{fig:DiGraph}
+}
+
+can be represented
+
+\[
+\left[
+\begin{array}{cccc}
+  & a & b & c \\
+a & 0 & 1 & 0 \\
+b & 0 & 0 & 1 \\
+c & 0 & 0 & 0
+\end{array}
+\right]
+\]
