@@ -55,9 +55,22 @@ This $x$ has the properties we needed above.
 \end{claim}
 
 \begin{proof}
-We know that $\frac{1}{2}$ of $m_i$ are smaller than $x$, and we know $\frac{n}{10}$ of $m_i$ are $ \leq x $.
-\end{proof}
 
+We know that $\frac{1}{2}$ of $m_j$ are smaller than $x$, and since
+there are $ \frac{n}{5} m_j$s, we know $\frac{n}{10}$ of $m_j$ are $
+\leq x $.
+
+So for each $m_j$ where $m_j \leq x$ 
+
+\begin{itemize} 
+
+\item there are 3 elements that are $ \leq m_j $
+\item so 3 (or more) elements are $ \leq x $
+
+\end{itemize}
+%
+\end{proof}
+%
 Now we must put $x$ into its position in the array using partitioning.
 As a side note, partitioning is used in quicksort.
 
@@ -126,6 +139,14 @@ Secondly, notice:
 \frac{1}{5} + \frac{7}{10} = \frac{9}{10} < 1
 \end{displaymath}
 
-Dividing into groups of 3 doesn't work because...
+Dividing into groups of 3 doesn't work because:
+%
+\begin{displaymath}
+T(n) = O(n) + T(n/3) + T(2n/3) = \Theta(nlogn)
+\end{displaymath}
 
-Dividing into groups of 7 actually does work because...
+Dividing into groups of 7 actually does work because:
+%
+\begin{displaymath}
+T(n) = O(n) + T(n/7) + T(5n/7) = \Theta(n)
+\end{displaymath}
