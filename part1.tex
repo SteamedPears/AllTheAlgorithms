@@ -1,1 +1,37 @@
-Part 1
+{\bf Part 1: Two Fibonaccis}
+
+$fib(n):$
+\begin{algorithmic}
+\IF { $ n=0 $ or $ n=1 $ }
+\RETURN $n$
+\ELSE
+\RETURN $fib(n-1) + fib(n-2)$
+\ENDIF
+\end{algorithmic}
+
+We can state a recurrence for this algorithm:
+
+\begin{align*}
+T(n) 
+&= T(n-1) + T(n-2) + O(1) \\
+&\geq fib(n-1) + fib(n-2) \\
+&= fib(n)
+\end{align*}
+
+$fib2(n):$
+\begin{algorithmic}
+\IF { $ n = 0 $ }
+\RETURN 0
+\ENDIF
+\STATE create array $f[0 .. n]$
+\STATE $f[0] \leftarrow 0, f[1] \leftarrow 1$
+\FOR { $ i \leftarrow 2$ to $n$ }
+\STATE $f[i] \leftarrow f[i-1] + f[i-2]$
+\ENDFOR
+\RETURN $f[n]$
+\end{algorithmic}
+
+Addition of two numbers in the preceding algorithm takes constant time
+until the values exceed the maximum value that can be stored in a
+word.  After which, we need to consider how values of arbitrary length
+are added.

@@ -1,0 +1,36 @@
+{\bf Part 2 - Integer Multiplication}
+
+Let us consider an integer $X$ which is composed of $X_L$ which are
+the leftmost bits of $X$, and $X_R$ which are the rightmost bits of
+$X$.
+
+\begin{displaymath}
+X = X_L | X_R
+\end{displaymath}
+
+We can multiply integers $X,Y$ as follows:
+
+\begin{align*}
+XY
+&= (2^{n/2}X_L + X_R)(2^{n/2}Y_L + Y_R) \\
+&= 2^n X_LY_L + 2^{n/2}X_LY_R + 2^{n/2}X_RY_L + X_RY_R
+\end{align*}
+
+Which gives the recurrence
+
+\begin{align*}
+T(n)
+&= 4T(n/2) + O(n) \\
+&\leq 4T(n/2) + cn \\
+&\leq 4(4T(n/4) + cn/2) + cn \\
+&\leq 4(4(4T(n/8) + cn/4) + cn/2) + cn \\
+&\leq 64T(n/8) + cn(1 + 2 + 4) \\
+\end{align*}
+
+Which we can see by unfolding is:
+
+\begin{align*}
+T(n)
+&\leq cn(1 + 2 + 4 + ...) \\
+&= cn \sum\limits_{n=0}^{\infty} 2^n
+\end{align*}

@@ -2,7 +2,7 @@
 
 ASSIGN		= notes
 
-PARTS		= part1
+PARTS		= part1 part2
 
 MAIN_TEX	= ${ASSIGN}.tex
 
