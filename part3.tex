@@ -25,3 +25,22 @@ We can reason about a recurrence of the form: $ T(n) = aT(\frac{n}{b})
   %\caption{A recursion tree representing a recursions on n/b elements}
   \label{fig:recursion_tree}
 }
+
+This tree has the following properties:
+
+\begin{enumerate}
+\item The number of nodes at level $i$: $a^i$
+\item Work done at each node of level $i$: $f(\frac{n}{b^i})$
+\item Number of levels: $log_bn$
+\item Number of leaves: $n^{log_ba}$
+\end{enumerate}
+
+We can use this information to solve the recurrence:
+
+\begin{align*}
+T(n)
+&= \sum\limits_{i=0}^{log_bn} 
+(\text{\# nodes at level } i) 
+(\text{work done at level } i) \\
+&= \sum\limits_{i=0}^{log_bn} a^i f(\frac{n}{b^i})
+\end{align*}
