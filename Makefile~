@@ -10,7 +10,7 @@ PARTS_TEX	= ${addsuffix .tex,${PARTS}}
 
 PDF     = ${ASSIGN}.pdf
 
-FIGURES = heapTreeArray.pdf
+FIGURES = heapTreeArray
 
 TEX     = pdflatex
 TEXOPTS = -halt-on-error
