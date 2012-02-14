@@ -1,1 +1,76 @@
 \chapter{Union-Find}
+
+Consider the following problem. Given $n$ disjoint sets of 1 element each,
+perform $n$ unions and then $m$ queries for what set a given element is in.
+We will call these two operations $union(A,B)$ and $find(x)$. 
+
+\section{Approach 1: Linked Lists}
+Our first
+approach to this problem is to describe our sets as linked lists. We know
+we can combine linked lists quite quickly, so this seems ideal for $union$. 
+All we must do is have the head of $B$ point to the tail of $A$, which can be
+done in constant time.
+However, linked lists are not particularly well suited for $find$. To resolve
+this, at every node we shall store a $back pointer$ to the linked list 
+the node is part of. This allows us to perform $find$ in constant time. 
+However, now $union$ needs some extra work.
+When we call $union(A,B)$, we will now walk through $B$ and fix all of its
+back pointers to point to $A$. This will take time linear in the size of $B$.
+
+Given $n$ sets, what is the worst possible way to $union$ them? Well, since
+the run time $union$ is linear in the size of the second list, adversarial
+we can
+do is to $union$ every individual element with the current unioned set. For
+instance, $union(D,union(C,union(A,B)))...$. Clearly this will require
+$O(\summ{i=1}{n-1}i)$, which is $O(n^2)$. If we then perform $m$ $find$s, all
+of which take $O(1)$ time, we will have performed $n$ $union$s and $m$ $find$s
+in $O(n^2 + m)$ time.
+
+\section{Approach 2: Better Linked Lists}
+Somehow our first approach was naive, which allowed us to ``game" the system
+to create a very bad result for the $union$s. To get a better result, we will
+make a slight modification to our $union$ algorithm. Instead of blindly
+attaching $B$ to the end of $A$, we will attach the smaller set to the larger.
+This fixes our adversarial approach, but is it actually better? 
+
+Consider how frequently we need to change the back pointers on an individual
+node. At first, it is part of a set of size one, and will have to change its
+pointer when unioned to a set of size $\geq 1$, placing it in a set
+of size $\geq 2$. The next time it will be changed is when it is unioned
+to a set of size $\geq 2$, then $\geq 4$ and so on. The last time will be
+when it is unioned to a set of size $\geq n/2$ after which we can not find
+another set of large enough size to change it again. Therefore each
+back pointer needs to be changed $O(\log n)$ times at worst. Since there
+are $n$ back pointers, this new approach only require $O(n \log n)$
+time to perform the unions. Since the $find$ operation is not effected,
+our approach now performs $n$ $union$s and $m$ $find$s
+in $O(n \log n + m)$ time.
+
+\section{Approach 3: Trees}
+Having to fix back pointers is still fairly wasteful, what if we didn't have
+to? Instead of implementing our sets as linked lists, we can instead
+use trees. Each set will be a node with either the name of the set, or a
+pointer to its parent. When we perform $union(A,B)$, we will simply
+replace the name of the shorter set with a pointer to the head of the taller
+set. Since we are just changing a pointer, this will only take $O(1)$ time.
+Our $find$ algorithm, however, will now have to walk from the node all the way
+to the root of the tree it is in to find out what list it is in. By a
+similar argument from the previous section, the height of our tree will only
+ever be $\log n$. 
+Therefore this approach can support $n$ $union$s and $m$ $find$s
+in $O(n + m \log n)$ time.
+
+\section{Approach 4: Path Compression}
+Our $union$ algorithm is optimal using the tree approach, but it has
+made our $find$ algorithm suffer. To fix this, we make a simple observation.
+Since our find algorithm must already walk through several nodes in the tree,
+once we get to the root we can, without worsening the time,
+relabel all of their pointers to point directly to the root. This approach
+is called $path compression$. This will make
+subsequent queries on these elements and their children substantially faster.
+The analysis of this algorithm is beyond the scope of this class, but
+evidently it  can support $n$ $union$s and $m$ $find$s
+in $O(n + m \alpha(n))$ time. Where $\alpha$ is the inverse Ackermann function. 
+Although $\alpha(n)$ tends towards infinity as $n$ does, for any ``practical"
+$n$ it is at most $4$. It turns out that this is in fact optimal for the
+union-find problem.
