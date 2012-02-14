@@ -4,7 +4,7 @@
 % Midterm Notes
 % By Simon Pratt
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\documentclass[11pt]{article}
+\documentclass[11pt]{book}
 
 \usepackage{geometry}
 \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=.5in,rmargin=.5in}
@@ -35,12 +35,12 @@
 % Theorem, Lemma and Definitions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newtheorem{thm}{Theorem}[ques]
-\newtheorem{lem}{Lemma}[ques]
-\newtheorem*{bthm}{Theorem}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem*{btheorem}{Theorem}
 \theoremstyle{definition}
-\newtheorem{dfn}{Definition}
-\newtheorem{clm}{Claim}[ques]
+\newtheorem{definition}{Definition}
+\newtheorem{claim}{Claim}[chapter]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fix for amsthm and parskip
@@ -58,14 +58,14 @@
 % Mostly taken from: 
 %  https://texblog.wordpress.com/2007/11/07/headerfooter-in-latex-with-fancyhdr/
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pagestyle{fancy}
+\pagestyle{fancyplain}
 \setlength{\headheight}{14pt}
 \fancyhead{}             % clear header
 \fancyfoot{}
 
 \fancyhead[L]{COMP3804}
 \fancyhead[C]{Page \thepage }
-\fancyhead[R]{Simon Pratt}
+\fancyhead[R]{Alexis Beingessner \\ Simon Pratt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Pretty math macros
@@ -83,6 +83,10 @@
   \include{part2}
   \include{part3}
   \include{part4}
+  \include{part5}
+  \include{part6}
+  \include{part7}
+  \include{part8}
 
 \end{multicols}
 \end{document}

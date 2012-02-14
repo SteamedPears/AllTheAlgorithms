@@ -1,4 +1,4 @@
-{\bf Part 4 - Heaps}
+\chapter{Heaps}
 
 For the purposes of generality, instead of referring to 
 elements that are ``greater than" or ``less than" others,
@@ -30,7 +30,7 @@ This is depicted below.
 Heaps are commonly used to implement priority queues, because they do the
 minimum amount of work required to keep track of the best element.
 
-{\bf How to Implement a Heap}
+\section{How to Implement a Heap}
 
 A heap must support the following operations
 
@@ -74,7 +74,7 @@ of the tree.
 Therefore, a heap may support $best()$ in $O(1)$ time, $insert(x)$ 
 in $O(\log n)$ time, and $pop-best()$ in $O(\log n)$ time.
 
-{\bf Building a Heap}
+\section{Building a Heap}
 
 Now that we can support all the operations that a heap must implement,
 it would be nice to be able to actually construct one given a list of $n$
@@ -96,7 +96,7 @@ Because we are doing very little work for the majority of the elements, we end
 up doing only $O(n)$ work over all, which is optimal, as this is the amount of
 time required to find the best element.
 
-{\bf Heapsort}
+\section{Heapsort}
 
 Another nice property of a heap is that once a heap has been implemented
 it provides a very simple procedure to be used to sort elements.
