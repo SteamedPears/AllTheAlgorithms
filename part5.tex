@@ -82,6 +82,10 @@ properly located at position $q$ in $A$.  We are left with 3 cases:
 
 \end{enumerate}
 
+This last step gives a recurrence of $ T \left( \frac{7n}{10} \right)
+$ in the worst case because at least $ \frac{3n}{10} $ elements in $A$
+are smaller than $x$.
+
 \section{Analysis}
 
 We now have the following recurrence:
@@ -89,8 +93,6 @@ We now have the following recurrence:
 \begin{displaymath}
 T(n) = T \left( \frac{n}{5} \right) +T \left( \frac{7n}{10} \right) + O(n)
 \end{displaymath}
-
-% Where the heck does the 7n/10 come from??
 
 \begin{claim}
 $ T(n) \leq cn $
@@ -123,3 +125,7 @@ Secondly, notice:
 \begin{displaymath}
 \frac{1}{5} + \frac{7}{10} = \frac{9}{10} < 1
 \end{displaymath}
+
+Dividing into groups of 3 doesn't work because...
+
+Dividing into groups of 7 actually does work because...
