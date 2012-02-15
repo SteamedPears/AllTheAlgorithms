@@ -32,8 +32,9 @@ parentheses.
 \end{theorem}
 
 Running a DFS on a graph reveals a tree structure where the start node
-is the root.  There are a few interesting classifications of edges in
-a DFS:
+is the root and neighbours are parent and child depending on which was
+visited first.  There are a few interesting classifications of edges
+in a DFS tree:
 
 \begin{enumerate}
 
@@ -64,3 +65,12 @@ will link a descendant to ancestor which is the definition of a back
 edge.
 
 \end{proof}
+
+\begin{theorem}
+
+After running a DFS on a directed acyclic graph (DAG), each edge leads
+to a vertex with a lower post number.
+
+\end{theorem}
+
+The proof of this theorem is left up to the reader.

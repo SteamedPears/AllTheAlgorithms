@@ -32,17 +32,17 @@ deg(B) &= 2
 Sometimes an edge is directional, meaning the pair of vertices in an
 edge is ordered.  In other words, the edge $(A, B)$ connects $A$ to
 $B$, but not $B$ to $A$.  We say such an edge is incoming on $B$ and
-outgoing on $A$.  This is represented visually by an edge with an
-arrow at one end, indicating the direction:
+outgoing on $A$.  A graph whose edges are ordered pairs is called a
+$directed graph$ or $digraph$.
+
+This is represented visually by an edge with an arrow at one end,
+indicating the direction:
 
 {
   \includegraphics[scale=0.2]{DiGraph}
   %\caption{Demonstrates a directed graph}
   \label{fig:DiGraph}
 }
-
-Generally when we say graph, we mean undirected graph and will specify
-directed graph or \emph{digraph}.
 
 In a digraph, the number of incoming edges of $v$ is the in-degree or
 $deg^-(v)$.  Similarly, the number of outgoing edges is the
@@ -77,6 +77,11 @@ and edges in another graph.
 A \emph{connected component} is a connected subgraph which does
 not disconnect any adjacent vertices.  It should be easy to see that a
 connected graph has exactly one connected component.
+
+A \emph{cycle} in a graph is when there exists a path from a vertex
+back to itself without crossing any edge more than once.
+
+A graph is said to be \emph{acyclic} when it does not contain cycles.
 
 \section{Representation}
 
