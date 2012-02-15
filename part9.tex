@@ -1,17 +1,53 @@
 \chapter{Minimum Spanning Tree}
 
 Given an undirected, connected graph where each edge has positive
-weight, return a connected subgraph on the same vertex set with
-minimal weight.  This may not be unique, for proof consider two edges
-with equal weight, either of which would connect two connected
-components of a subgraph.  One but not both of these edges is in the
-MST, but either would be minimum.
+weight, the \emph{Minimum Spanning Tree} (MST) is a connected subgraph on the same 
+vertex set with minimal weight. Intuitively, the MST is the lightest possible
+connected subgraph. The MST is not necessarily unique, 
+for proof of this, consider a graph where all edges are of equal weight. 
+Any tree is an MST of such a graph. 
 
 \section{Kruskal's Algorithm}
 
-The idea of this algorithm is to begin with the vertex list and an
-empty edge list, and maintain a forest adding the edge of minimum
-weight that does not make a cycle until the forests are connected.
+%The idea of this algorithm is to begin with the vertex list and an
+%empty edge list, and maintain a forest, adding the edge of minimum
+%weight that does not make a cycle until the forests are connected.
+
+Kruskal's algorithm for computing the MST relies on the simple observation
+that the smallest edge in a graph $G$ is part of \emph{some} MST of $G$.
+Kruskal's algorithm starts by constructing a min-heap containing all $m$ edges
+in $G$, and a collection of disjoint sets, each containing one of the
+$n$ vertices of $G$. We also construct an empty list $T$ that will hold
+all the edges of the MST. We then get the minimum edge from the heap, check if
+the two nodes the edge joins are from the same set, and if not add 
+the edge to $T$, and $union$ the two sets that the edge joins.
+We repeat this until $T$ contains $n-1$ edges. 
+
+Because this algorithm uses
+structures we already know and understand, analysis will be fairly easy.
+We require $O(m) + O(n)$ time to construct the initial sets and heap. We also
+require $O(m \log m)$ to extract the minimums from the heap. Our $n-1$ unions
+and $n-1$ finds can be done in $(n \log n + n)$ time. Therefore this algorithm
+takes $O(m \log m + n \log n)$.
 
 \section{Prim's Algorithm}
+Prim's algorithm for computing the MST is fairly similar to Kruskal's. However,
+instead of working with all of the edges and vertices at once, it picks one
+vertice and builds from that. We start by constructing an empty list $A$ which
+will hold all the vertices that are part of the MST so far, a list $T$ which
+will hold all the edges in the MST so far, a min-heap $V$ which will contain all
+the vertices not in $A$. At first every node is given a key of infinity. 
+We then pick a random vertex $v$ from $V$ and move it from $V$ 
+to $A$. Next we look at all the edges of $v$ and set the
+keys of the corresponding nodes to the weight of these edges. Now we retrieve
+the minimum node $u$ from $V$ and move it to $A$, and its key edge to $T$. 
+Next we look at all the edges on $u$ and if their weight is smaller than
+the current key of their corresponding edge, set the key to that weight. Then
+we simply retrieve another node from the heap and repeat. After $n-1$ iterations
+we will have a complete MST.
+
+This algorithm requires $O(n)$ time to construct the initial heap and 
+initialize the first node, and since we must update at most $m$ keys in the
+heap of $n$ elements, it requires $O(m \log n)$ time to do this. Therefore the
+entire algorithm takes $O(n + m \log n)$ time.
 
