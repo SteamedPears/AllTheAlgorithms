@@ -1,8 +1,10 @@
 \chapter{Graphs}
 
-A \emph{graph} is a set of \emph{vertices} $V$ and \emph{edges} $E$.
-An edge is a pair of vertices which are said to be connected.  For
-example:
+A \emph{graph} is an ordered pair $G=(V,E)$ where $V$ is a set of
+\emph{vertices} and $E$ is a set of \emph{edges}.  An edge is a pair
+of vertices which are said to be \emph{adjacent}.  Usually we consider
+edges to be unordered, in which case the graph is undirected and an
+edge $\{A,B\}$ connects $A$ to $B$ and $B$ to $A$.  For example:
 
 \begin{align*} 
 V &= \{ A, B, C \} \\ E &= \{ (A, B), (B, C) \} 
@@ -27,7 +29,8 @@ deg(A) = deg(C) &= 1 \\
 deg(B) &= 2
 \end{align*}
 
-Sometimes an edge is directional, meaning $(A, B)$ connects $A$ to
+Sometimes an edge is directional, meaning the pair of vertices in an
+edge is ordered.  In other words, the edge $(A, B)$ connects $A$ to
 $B$, but not $B$ to $A$.  We say such an edge is incoming on $B$ and
 outgoing on $A$.  This is represented visually by an edge with an
 arrow at one end, indicating the direction:
@@ -62,10 +65,8 @@ A \emph{path} is a sequence of edges from vertex $u$ to vertex $v$.
 Two vertices are said to be \emph{connected} if there exists a path
 between them.  
 
-Two vertices are said to be \emph{adjacent} if they are connected by a
-path consisting of a single edge.  A graph is said to be connected if
-for any two vertices, there exists a path between them. An adjacent
-vertex is called a \emph{neighbour}.
+A graph is said to be connected if for any two vertices, there exists
+a path between them. An adjacent vertex is called a \emph{neighbour}.
 
 A \emph{complete} graph is one in which every vertex is adjacent to
 every other vertex.
