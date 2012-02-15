@@ -41,35 +41,36 @@ A heap must support the following operations
 \end{itemize}
 
 From the definition of a heap, we know the we can easily implement
-$best()$ by returning the root of the heap, which should take $O(1)$ time.
-However the other operations are less obvious. 
+$best()$ by returning the root of the heap, which should take $O(1)$
+time.  However the other operations are less obvious.
 
-To $insert(x)$ recall that a heap must be complete, therefore, if a new
-element is added, it must be added to the left-most available space in the
-last row of the heap. However, the heap property may now be violated. 
-If the new element $x$ is worse than its parent $y$, the heap property is
-satisfied and we may stop. However if it is not satisfied we may swap
-$x$ with $y$ and recurse on $x$'s new position. This works because we know
-that $y$ is better than all of $x$'s children, because the heap property was
-satisfied before $x$ was added. Further, because $x$ is better than $y$, it
-is also better than all of $y$'s children. However $x$ may still be better than
-its new parent, so we must recurse. If $x$ is the new best element, it will
-eventually reach the root. Because heaps are complete, this operation will take
-$O(\log n)$ time, as this is the height of the heap.
+To $insert(x)$ recall that a heap must be complete, therefore, if a
+new element is added, it must be added to the left-most available
+space in the last row of the heap. However, the heap property may now
+be violated.  If the new element $x$ is worse than its parent $y$, the
+heap property is satisfied and we may stop. However if it is not
+satisfied we may swap $x$ with $y$ and recurse on $x$'s new
+position. This works because we know that $y$ is better than all of
+$x$'s children, because the heap property was satisfied before $x$ was
+added. Further, because $x$ is better than $y$, it is also better than
+all of $y$'s children. However $x$ may still be better than its new
+parent, so we must recurse. If $x$ is the new best element, it will
+eventually reach the root. Because heaps are complete, this operation
+will take $O(\log n)$ time, as this is the height of the heap.
 
-To $pop-best()$, we may simply remove the root,
-however this completely destroys the entire heap. Instead, we will swap
-the root with the bottom-left-most element, $y$. Now removing the
-best element leaves us with a still complete tree. However the heap property
-has likely been violated once more. If $y$ is better than both its children,
-then we may stop. However, if not, we shall swap $y$ with its largest child
-and recurse on $y's$ new position. Because the element we swap with $y$ is
-better than both $y$ and the other child, the heap property has been
-satisfied for this sub-heap. However, the heap property may still be violated
-for $y's$ new sub-heap, so we must do this again, until $y$ is the root
-of a valid heap. Once more, this operation
-requires $O(\log n)$ time, as it must at worse traverse the entire height
-of the tree. 
+To $pop-best()$, we may simply remove the root, however this
+completely destroys the entire heap. Instead, we will swap the root
+with the bottom-left-most element, $y$. Now removing the best element
+leaves us with a still complete tree. However the heap property has
+likely been violated once more. If $y$ is better than both its
+children, then we may stop. However, if not, we shall swap $y$ with
+its best child and recurse on $y's$ new position. Because the element
+we swap with $y$ is better than both $y$ and the other child, the heap
+property has been satisfied for this sub-heap. However, the heap
+property may still be violated for $y's$ new sub-heap, so we must do
+this again, until $y$ is the root of a valid heap. Once more, this
+operation requires $O(\log n)$ time, as it must at worse traverse the
+entire height of the tree.
 
 Therefore, a heap may support $best()$ in $O(1)$ time, $insert(x)$ 
 in $O(\log n)$ time, and $pop-best()$ in $O(\log n)$ time.
