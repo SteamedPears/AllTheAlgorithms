@@ -1,0 +1,17 @@
+digraph G {
+ nodesep=.05;
+ rankdir=LR;
+ node [height=.1];
+
+ node0 [shape=record,label = "<f0> A |<f1> B |<f2> C ",width=.1,height=2.5];
+ node [width = 1.5];
+ ab [label = "B"];
+ ba [label = "A"];
+ bc [label = "C"];
+ cb [label = "B"];
+
+ node0:f0 -> ab;
+ node0:f1 -> ba;
+ ba -> bc;
+ node0:f2 -> cb;
+} 

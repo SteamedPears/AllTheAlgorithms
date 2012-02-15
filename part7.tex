@@ -1,11 +1,11 @@
 \chapter{Graphs}
 
-A graph is a set of vertices $V$ and edges $E$.  An edge is a pair of
-vertices which are said to be connected.  For example:
-%
-\begin{align*}
-V &= \{ A, B, C \} \\
-E &= \{ (A, B), (B, C) \}
+A \emph{graph} is a set of \emph{vertices} $V$ and \emph{edges} $E$.
+An edge is a pair of vertices which are said to be connected.  For
+example:
+
+\begin{align*} 
+V &= \{ A, B, C \} \\ E &= \{ (A, B), (B, C) \} 
 \end{align*}
 
 Which can be represented more visually:
@@ -39,7 +39,7 @@ arrow at one end, indicating the direction:
 }
 
 Generally when we say graph, we mean undirected graph and will specify
-directed graph or digraph.
+directed graph or \emph{digraph}.
 
 In a digraph, the number of incoming edges of $v$ is the in-degree or
 $deg^-(v)$.  Similarly, the number of outgoing edges is the
@@ -53,5 +53,110 @@ deg^-(B) = deg^-(C) &= 1 \\
 deg^+(C) = deg^-(A) &= 0
 \end{align*}
 
+A \emph{simple graph} is a graph which contains no edges from any
+vertex $v$ to itself $ (v,v) $, called loops.  A simple graph also
+contains no multi-edges which connect more than two vertices.
 
+A \emph{path} is a sequence of edges from vertex $u$ to vertex $v$.
 
+Two vertices are said to be \emph{connected} if there exists a path
+between them.  
+
+Two vertices are said to be \emph{adjacent} if they are connected by a
+path consisting of a single edge.  A graph is said to be connected if
+for any two vertices, there exists a path between them. An adjacent
+vertex is called a \emph{neighbour}.
+
+A \emph{complete} graph is one in which every vertex is adjacent to
+every other vertex.
+
+A \emph{subgraph} is a graph consisting of a subset of the vertices
+and edges in another graph.
+
+A \emph{connected component} is a connected subgraph which does
+not disconnect any adjacent vertices.  It should be easy to see that a
+connected graph has exactly one connected component.
+
+\section{Representation}
+
+\subsection{Adjacency List}
+
+One way to represent a graph is for every vertex, store a list of
+neighbours.  For example:
+
+{
+  \includegraphics[scale=0.2]{SimpleGraph}
+  %\caption{Demonstrates a simple graph}
+  \label{fig:SimpleGraph}
+}
+
+can be represented:
+
+{
+  \includegraphics[scale=0.7]{AdjacencyList}
+  %\caption{Demonstrates an adjacency list for a simple graph}
+  \label{fig:AdjacencyList}
+}
+
+And
+
+{
+  \includegraphics[scale=0.2]{DiGraph}
+  %\caption{Demonstrates a directed graph}
+  \label{fig:DiGraph}
+}
+
+can be represented:
+
+{
+  \includegraphics[scale=1.0]{AdjacencyListDigraph}
+  %\caption{Demonstrates an adjacency list for a directed graph}
+  \label{fig:AdjacencyListDigraph}
+}
+
+\subsection{Adjacency Matrix}
+
+Another representation of a graph is as a square matrix with $n$ rows
+and columns where the element at row $i$ and column $j$ is 1 if there
+is an edge between $v_i$ and $v_j$ and 0 otherwise.  For example:
+
+{
+  \includegraphics[scale=0.2]{SimpleGraph}
+  %\caption{Demonstrates a simple graph}
+  \label{fig:SimpleGraph}
+}
+
+can be represented
+
+\[
+\left[
+\begin{array}{cccc}
+  & a & b & c \\
+a & 0 & 1 & 0 \\
+b & 1 & 0 & 1 \\
+c & 0 & 1 & 0
+\end{array}
+\right]
+\]
+
+As for directed graphs, row $i$ column $j$ is 1 if there exists an
+edge $(v_i,v_j)$.  For example:
+
+{
+  \includegraphics[scale=0.2]{DiGraph}
+  %\caption{Demonstrates a directed graph}
+  \label{fig:DiGraph}
+}
+
+can be represented
+
+\[
+\left[
+\begin{array}{cccc}
+  & a & b & c \\
+a & 0 & 1 & 0 \\
+b & 0 & 0 & 1 \\
+c & 0 & 0 & 0
+\end{array}
+\right]
+\]

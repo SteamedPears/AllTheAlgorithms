@@ -1,0 +1,17 @@
+\chapter{Minimum Spanning Tree}
+
+Given an undirected, connected graph where each edge has positive
+weight, return a connected subgraph on the same vertex set with
+minimal weight.  This may not be unique, for proof consider two edges
+with equal weight, either of which would connect two connected
+components of a subgraph.  One but not both of these edges is in the
+MST, but either would be minimum.
+
+\section{Kruskal's Algorithm}
+
+The idea of this algorithm is to begin with the vertex list and an
+empty edge list, and maintain a forest adding the edge of minimum
+weight that does not make a cycle until the forests are connected.
+
+\section{Prim's Algorithm}
+
