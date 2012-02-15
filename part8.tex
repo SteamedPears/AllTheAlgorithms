@@ -1,1 +1,66 @@
 \chapter{Depth-First Search}
+
+One important operation in a graph is search.  A useful kind of search
+is Depth-First, in which we begin as some start node, marking the node
+visited, then we recurse on the neighbours one by one until no more
+unvisited neighbours exist.
+
+During a visit, we label each node with a number before visiting its
+children and another number after visiting its children.  This number
+(called the clock) starts at 1, and is incremented every time a node
+receives a label.  The number a node $v$ receives before its children
+are visited is called its pre-number ($pre(v)$), and the number that
+node receives after its children are visited is called its post-number
+($post(v)$).
+
+\begin{theorem}[Parenthesis Theorem]
+
+For nodes $u,v$, the interval between $pre(u)$ and $post(u)$ and the
+same interval for $v$ are either:
+
+\begin{itemize}
+
+\item Entirely disjoint
+\item The interval of $u$ is completely within the interval of $v$
+\item The interval of $v$ is completely within the interval of $u$
+
+\end{itemize}
+
+The name comes from the fact that this is just like properly nested
+parentheses.
+
+\end{theorem}
+
+Running a DFS on a graph reveals a tree structure where the start node
+is the root.  There are a few interesting classifications of edges in
+a DFS:
+
+\begin{enumerate}
+
+\item A \emph{Tree Edge} goes from a parent node to a child node.
+
+\item A \emph{Forward Edge} goes from ancestor to descendant (but not
+  parent to child)
+
+\item A \emph{Back Edge} goes from descendant to ancestor
+
+\item A \emph{Cross Edge} goes to a non-ancestor non-descendant
+
+\end{enumerate}
+
+\begin{theorem}
+A digraph has a cycle if and only if a DFS reveals a back edge.
+\end{theorem}
+
+\begin{proof}
+
+First let us assume there is a back edge.  By definition this is a
+descendant linking back to an ancestor, which has already been
+visited.  This gives us a cycle.
+
+Next let us assume there is a cycle.  A DFS will visit each node in
+the cycle, and as soon as the last edge in the cycle is visited it
+will link a descendant to ancestor which is the definition of a back
+edge.
+
+\end{proof}
