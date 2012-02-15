@@ -64,7 +64,8 @@ between them.
 
 Two vertices are said to be \emph{adjacent} if they are connected by a
 path consisting of a single edge.  A graph is said to be connected if
-for any two vertices, there exists a path between them.
+for any two vertices, there exists a path between them. An adjacent
+vertex is called a \emph{neighbour}.
 
 A \emph{complete} graph is one in which every vertex is adjacent to
 every other vertex.
@@ -79,6 +80,39 @@ connected graph has exactly one connected component.
 \section{Representation}
 
 \subsection{Adjacency List}
+
+One way to represent a graph is for every vertex, store a list of
+neighbours.  For example:
+
+{
+  \includegraphics[scale=0.2]{SimpleGraph}
+  %\caption{Demonstrates a simple graph}
+  \label{fig:SimpleGraph}
+}
+
+can be represented:
+
+{
+  \includegraphics[scale=0.7]{AdjacencyList}
+  %\caption{Demonstrates an adjacency list for a simple graph}
+  \label{fig:AdjacencyList}
+}
+
+And
+
+{
+  \includegraphics[scale=0.2]{DiGraph}
+  %\caption{Demonstrates a directed graph}
+  \label{fig:DiGraph}
+}
+
+can be represented:
+
+{
+  \includegraphics[scale=1.0]{AdjacencyListDigraph}
+  %\caption{Demonstrates an adjacency list for a directed graph}
+  \label{fig:AdjacencyListDigraph}
+}
 
 \subsection{Adjacency Matrix}
 
