@@ -79,7 +79,7 @@ in $O(\log n)$ time, and $pop-best()$ in $O(\log n)$ time.
 
 Now that we can support all the operations that a heap must implement,
 it would be nice to be able to actually construct one given a list of $n$
-elements. A naive approach is to simply call $insert(x)$ on every element
+elements. A na\"ive approach is to simply call $insert(x)$ on every element
 in the list. However, since $insert(x)$ requires $O(\log n)$ time, this will
 require $O(n \log n)$ time. These seems pretty bad, considering one can find
 the best element in a list by brute force in $O(n)$ time. Can we achieve a
