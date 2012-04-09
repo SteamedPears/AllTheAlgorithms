@@ -2,7 +2,7 @@
 
 ASSIGN		= notes
 
-PARTS		= dfs
+PARTS		= dfs \
 		  fibonacci \
 		  graphs \
 		  heaps \
