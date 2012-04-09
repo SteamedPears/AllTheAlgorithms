@@ -2,4 +2,24 @@
 
 \section{VERTEX-COVER}
 
+Create a copy of the edge list.  Choose an arbitrary edge from this
+copy, and add both vertices on this edge to the set which will become
+the vertex cover.  Then remove all edges in our edge list copy which
+are incident to either vertex on the chosen edge.  Repeat this process
+until our edge list copy is empty.
+
+Exercise for the reader: prove that this is a 2-approximation.
+
 \section{Bin Packing}
+
+We describe the ``First-Fit'' approximation.  Given an object to pack
+and a list of open bins, add the object to the first bin into which it
+will fit.  If it fits into no bins, open a new bin and insert the object.
+
+It should be easy to see that no two bins will be less than half full,
+otherwise the object(s) in the second bin would have been added to the
+first.
+
+The worst case for this approximation is that every bin will be about
+half full.  In which case it is no worse than twice the optimal, so
+this is a 2-approximation.
