@@ -2,7 +2,15 @@
 
 ASSIGN		= notes
 
-PARTS		= part1 part2 part3 part4 part5 part6 part7 part8 part9
+PARTS		= dfs
+		  fibonacci \
+		  graphs \
+		  heaps \
+		  integer_multiplication \
+		  mst \
+		  recurrences \
+		  selection \
+		  union_find
 
 MAIN_TEX	= ${ASSIGN}.tex
 
