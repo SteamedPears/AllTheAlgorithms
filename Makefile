@@ -15,7 +15,8 @@ PARTS		= dfs \
 		  complexity_classes \
 		  dynamic_programming \
 		  np_complete \
-		  shortest_path
+		  shortest_path \
+		  license
 
 
 MAIN_TEX	= ${ASSIGN}.tex
