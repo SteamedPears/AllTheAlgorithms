@@ -1,13 +1,62 @@
 \chapter{Shortest Path}
 
+Given a weighted graph, one interesting problem is to find the
+path with minimal weight.
+
 \section{Single Source}
+
+This instance of the shortest path problem begins at a specific vertex
+in the graph, hence ``Single Source.''
 
 \subsection{Dijkstra's Algorithm}
 
+Given an acyclic graph $G=(V,E)$ in which every edge has a positive
+weight and a single vertex $s$ from which to start the path, we begin
+by labeling all vertices $u \in E | weight(u) = \infty$, then label
+$weight(s) = 0$.  We also create a min-heap of the vertices using
+weight as key.
+
+We pop-best a vertex $v$ from our heap.  For each edge $e$ incident to
+$v$ and some other vertex $u$, we check if $weight(v) + weight(e)$ is
+less than $weight(u)$, in which case we set $weight(u) = weight(v) +
+weight(e)$ and decrease the key of $u$ in our heap.  We continue this
+process until no vertices remain in the heap.
+
+It should be easy to see that if we have a particular target vertex,
+we can halt the algorithm as soon as our target is the root of the
+heap, because we have found the shortest path to it.
+
+\subsection{Analysis of Dijkstra's Algorithm}
+
+Intuitively, this algorithm has an upper bound of $O(|V|)$ times
+however long it takes us to extract the minimum vertex from our heap,
+plus $O(|E|)$ times however long it takes us to decrease the key,
+since we have to check every vertex and we may have to check every
+edge.  Using a standard heap, this gives us $O(|V|log|V| +
+|E|log|V|)$.
+
 \section{All Sources}
 
-\subsection{Floyd-Warshall}
+This instance of the shortest path problem is concerned with several
+sources, in which case Dijkstra's Algorithm does not suffice.
+
+\subsection{Floyd-Warshall Algorithm}
+
+The Floyd-Warshall Algorithm is discussed in detail in the chapter on
+Dynamic Programming.
 
 \section{Arbitrary Weights}
 
-\subsection{Bellman-Ford}
+A keen reader will have noticed that both Dijkstra's and Floyd
+Warshall Algorithms assume positive edge weights.  Neither of which
+are generally useful when there may be edges of negative weight.
+
+\subsection{Bellman-Ford Algorithm}
+
+The Bellman-Ford Algorithm can be applied with edges of arbitrary
+weight.  Note that even Bellman-Ford doesn't deal with cycles of
+negative weight, since these can be used to make any path have an
+arbitrarily small total weight.
+
+The Bellman-Ford Algorithm is beyond the scope of these notes, for
+more information please see Wikipedia, or CLRS.
