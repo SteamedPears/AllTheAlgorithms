@@ -94,7 +94,8 @@ We then define the recurrence $t(i,i+1) = 0$ for all $i$, and $t(i,j)
 We then compute all $t(i,i+1)$, then all $t(i,i+2)$, $t(i,i+3)$,
 ... until we have calculated $t(1,n)$.
 
-\hypertarget{sec:floyd_warshall}{\section{All-Pairs Shortest Path (Floyd-Warshall)}}
+\hypertarget{sec:floyd_warshall}{\section{All-Pairs Shortest Path
+    (Floyd-Warshall)}}
 
 Given a graph $G=(V,E)$ where edges have an associated weight $w(e)$
 for $e \in E$, compute the shortest path between $u$ and $v$ for all
@@ -125,7 +126,37 @@ Running time: $\BigOh{n^3}$.  Analysis is left as an exercise to the reader.
 
 \section{Knapsack}
 
+Given a knapsack (or bag) which can carry $W$ units of weight, and $n$
+items where item $i$ has weight $w_i$ and value $v_i$, what is the
+most valuable list of items which can fit in the given bag?  Notice
+that this may include multiples of a particular item.
 
+We start by defining the structure of an optimal solution.  Let $p(w)$
+be the value of the optimal packing of a bag which can carry $w$ units
+of weight, and let $p_i(w)$ be the same but necessarily including item
+$i$.
+
+\begin{align*}
+  p_i(w) &= p(w - w_i) + v_i & \\
+  p(0)   &= 0 & \\
+  p(w)   &= max \{ p(w - w_i) + v_i \} & \text{where $i : w_i \leq w$} \\
+\end{align*}
+
+We then calculate $p(0), p(1), ..., p(W)$.
+
+The running time for this algorithm is $\BigOh{nW}$.  Notice that $W$
+requires $\BigOh{logW}$ bits to represent.  Since the input to the
+problem is $n$ and the $\BigOh{logW}$ bits needed to represent $W$,
+and $W = 2^{logW}$, the time complexity is $\BigOh{n2^{logW}}$ so
+this solution is exponential with respect to the input.
 
 \section{String Edit Distance}
+
+We define the edit distance between two strings as the minimum number
+of insertions, deletions, or replacements necessary to transform one
+string into another.
+
+The problem is to compute this edit distance, given strings $X$ and
+$Y$.
+
 
