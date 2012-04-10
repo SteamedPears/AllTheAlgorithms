@@ -25,13 +25,19 @@
 %\usepackage{ulsy} % needed for \blitza
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Question and Answer environments
+% Extra stuff from John Howat
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcounter{ques}
-\newenvironment{question}{\stepcounter{ques}{\bf Question \arabic{ques}:}\vspace{1mm}\fontsize{8}{8}\selectfont}{}
-\newenvironment{subquestion}{\fontsize{8}{8}\selectfont}{}
-\newenvironment{answer}{{\bf Answer:}\fontsize{12}{12}\selectfont}{}
+\renewcommand{\implies}{\rightarrow}
+\newcommand{\same}{\leftrightarrow}
+\newcommand{\cross}{\times}
+\newcommand{\xor}{\oplus}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\BigOh}[1]{O\!\left(#1\right)}
+\newcommand{\LittleOh}[1]{o\!\left(#1\right)}
+\newcommand{\BigOmega}[1]{\Omega\!\left(#1\right)}
+\newcommand{\LittleOmega}[1]{\omega\!\left(#1\right)}
+\newcommand{\BigTheta}[1]{\Theta\!\left(#1\right)}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Theorem, Lemma and Definitions
