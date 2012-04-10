@@ -10,8 +10,19 @@ which case, we have a third strategy which may be of use: dynamic
 programming.  This strategy divides the problem into sub problems, but
 rather than recursing on each sub problem individually, we identify
 easy to compute base cases from which we can build towards the
-solution to the larger problem.  All the while storing previous
-computations using a technique called memoization.
+solution to the larger problem, storing the results of previous
+computations to use in later computations.  This technique differs
+from a similar technique called ``memoization'' which computes
+recursively top-down, whereas dynamic programming begins at the base
+case(s) and works up.
+
+Dynamic programming has three important steps:
+
+\begin{enumerate}
+\item Determine structure of optimal solution
+\item Set up recurrences for optimal solution
+\item solve recurrences bottom-up
+\end{enumerate}
 
 \section{Matrix Chain Multiplication}
 
@@ -19,7 +30,32 @@ computations using a technique called memoization.
 
 \section{Optimal Triangulation of a Convex Polygon}
 
+% page 91 in John's notes
 
+First some definitions.  A \emph{polygon} is a list of vertices
+$(v_1,...,v_n)$ such that for any $v_i$, there exists an edge
+$(v_i,v_{i+1})$ and also there exists an edge $(v_1,v_n)$.  A polygon
+is said to be \emph{convex} if any line passing through the polygon
+crosses the edges of the polygon at most twice.  A \emph{chord} is an
+edge between two non-adjacent vertices in a polygon.  A
+\emph{triangulation} is a set of chords which divide a polygon into
+triangles.
+
+The problem is to build a triangulation of a given convex polygon
+which minimizes total edge length.  We define the function $w(a,b,c)$
+to be the weight of the triangle $(v_a,v_b,v_c)$, which in this case
+will be the length of the edges $(v_a,v_b)$, $(v_b,v_c)$, and
+$(v_c,v_a)$.  We also define the function $t(a,b)$ to be the optimal
+triangulation of points $(v_a,...,v_b)$.  We would like to solve
+$t(1,n)$.
+
+We start by defining the structure of an optimal solution.  Notice
+that the optimal triangulation contains the triangle $(v_1,v_k,v_n)$
+for some $k$.  The cost of this triangulation is $t(1,k) + t(k,n) +
+w(1,k,n)$.
+
+We then define the recurrence $t(i,i+1) = 0$ for all $i$, and $t(i,j)
+= min \{ t(i,k) + t(k,j) + w(i,k,j) \}$ where $i < k < j$.
 
 \hypertarget{sec:floyd_warshall}{\section{All-Pairs Shortest Path (Floyd-Warshall)}}
 
