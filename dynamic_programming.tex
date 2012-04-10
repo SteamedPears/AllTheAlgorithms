@@ -60,6 +60,8 @@ The time complexity of this solution is
 
 \section{Longest Common Subsequence}
 
+% going to have to look this up, apparently I missed it
+
 \section{Optimal Triangulation of a Convex Polygon}
 
 % page 91 in John's notes
@@ -93,6 +95,30 @@ We then compute all $t(i,i+1)$, then all $t(i,i+2)$, $t(i,i+3)$,
 ... until we have calculated $t(1,n)$.
 
 \hypertarget{sec:floyd_warshall}{\section{All-Pairs Shortest Path (Floyd-Warshall)}}
+
+Given a graph $G=(V,E)$ where edges have an associated weight $w(e)$
+for $e \in E$, compute the shortest path between $u$ and $v$ for all
+$u,v \in V$.
+
+We start by defining the structure of an optimal solution.  Let us
+decompose the problem into finding the optimal path between $v_i$ and
+$v_j$.  All of the vertices on this path are contained in $\{
+v_1,...,v_k \}$ except perhaps $v_i,v_j$.  Notice that if $k=0$ then
+if there is an edge $(v_i,v_j) \in E$ then the distance is the weight
+of that edge, and if there is no such edge then the weight is
+infinite.  Otherwise, we take the minimum of either including or
+excluding $v_k$ on the path.  This gives the recurrence:
+
+\begin{math}
+  d^k_{i,j} = \left\{
+    \begin{array}{l l}
+      weight((v_i,v_j)) & \text{if $k=0$ and $(v_i,v_j) \in E$} \\
+      \infty            & \text{if $k=0$ and $(v_i,v_j) \not \in E$} \\
+      min \{ d^{k-1}_{i,j},d^{k-1}_{i,k} + d^{k-1}_{k,j} \} & \text{if $k>0$}
+    \end{array} \right.
+\end{math}
+
+Running time: $\BigOh{n^3}$.  Analysis is left as an exercise to the reader.
 
 \section{String Edit Distance}
 
