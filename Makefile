@@ -16,7 +16,8 @@ PARTS		= dfs \
 		  dynamic_programming \
 		  np_complete \
 		  shortest_path \
-		  license
+		  license \
+		  acknowledgements
 
 
 MAIN_TEX	= ${ASSIGN}.tex
