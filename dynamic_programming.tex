@@ -52,6 +52,12 @@ m(k+1,j) + p_{i-1}p_kp_j \}$ for all $k$ such that $i < k \leq j$.
 We then compute all $m(i,i)$ for $1 \leq i \leq n$, then all
 $m(i,i+1)$, $m(i,i+2)$, ... until we have calculated $m(1,n)$.
 
+The time complexity of this solution is
+
+\[
+  \summ{l=2}{n}\summ{i=1}{n-l+1}\summ{k=i}{i+l+2}\BigOh{1} = \BigOh{n^3}
+\]
+
 \section{Longest Common Subsequence}
 
 \section{Optimal Triangulation of a Convex Polygon}
