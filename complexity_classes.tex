@@ -1,8 +1,45 @@
 \chapter{Complexity Classes}
 
+A complexity class is a set of related problems.  Before we talk about
+specific classes, it is important to understand the difference between
+a decision problem and an optimization problem.
+
+\section{Optimization Problems}
+
+An optimization problem is a problem of the form ``find the optimal x
+for problem p.''  Each such problem may have a different defintion of
+optimal, and there may be many optimal solutions.
+
+\section{Decision Problems}
+
+A decision problem is much more limited in scope.  These are problems
+with strictly yes/no answers, of the form ``is x an optimal solution
+to problem p?''
+
 \section{P}
 
-\section{Decision and Optimization Problems}
+The complexity class $P$ is the set of all decision problems which are
+solvable in polynomial time.  That is to say, all problems for which
+there exists an algorithm to solve the problem bounded above by
+$O(n^d)$ where $d \in \mathbb{Z}$.
 
 \section{NP}
 
+The complexity class $NP$ is the set of all decision problems for
+which a certificate (possible solution) may be verified in polynomial
+time.  
+
+\section{$P \subseteq NP$}
+
+It should be obvious that any problem in $P$ is also in $NP$, since if
+we can find the answer in polynomial time without the certificate, we
+must certainly be able to do so with the certificate.
+
+\section{P = NP?}
+
+It is not obvious if there are problems in $NP$ but not in $P$ or if
+all problems in $NP$ are also in $P$.  In fact,
+\href{http://www.claymath.org/}{the Clay Mathematics Institute} has
+\href{http://www.claymath.org/millennium/P_vs_NP/}{listed this as one
+  of the Millenium Prizes} for which the award for solving is 1
+million USD.
