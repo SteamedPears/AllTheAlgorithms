@@ -16,15 +16,41 @@ from a similar technique called ``memoization'' which computes
 recursively top-down, whereas dynamic programming begins at the base
 case(s) and works up.
 
-Dynamic programming has three important steps:
+Dynamic programming has these important steps:
 
 \begin{enumerate}
 \item Determine structure of optimal solution
 \item Set up recurrences for optimal solution
-\item solve recurrences bottom-up
+\item Solve recurrences bottom-up
+\item Construct the optimal solution
 \end{enumerate}
 
+And the final step is most often neglected since we can typically add
+some small amount of information to the process so we can trivially
+reconstruct the optimal solution.
+
 \section{Matrix Chain Multiplication}
+
+Assuming knowledge of matrices and how they are multiplied.
+
+The problem is to find the way to multiply $n$ matrices $A_1,...,A_n$
+with dimensions $p_0,...,p_n$ (e.g. $A_i$ has dimensions $p_{i-1}
+\cross p_i$) using the least number of calculations.  Notice that
+multiplying $A_iA_{i+1}$ takes $p_{i-1}p_ip_{i+1}$ calculations.
+
+We start by determining the structure of the optimal solution.
+Observe that the optimal solution will necessarily involve splitting
+$A_1A_2...A_n$ into two subproblems at some optimally chosen
+$A_kA_{k+1}$ so we multiply $A_1...A_k$ then $A_k...A_n$ and then
+multiply the results together.  If we define the function $m(i,j)$ to
+be the minimum cost of multiplying $A_i...A_j$, then the cost of the
+optimal solution is $m(1,n) = m(1,k) + m(k+1,n) + p_0p_kp_n$.
+
+We then define the recurrence $m(i,i) = 0$ and $m(i,j) = min \{ m(i,k) +
+m(k+1,j) + p_{i-1}p_kp_j \}$ for all $k$ such that $i < k \leq j$.
+
+We then compute all $m(i,i)$ for $1 \leq i \leq n$, then all
+$m(i,i+1)$, $m(i,i+2)$, ... until we have calculated $m(1,n)$.
 
 \section{Longest Common Subsequence}
 
@@ -55,7 +81,10 @@ for some $k$.  The cost of this triangulation is $t(1,k) + t(k,n) +
 w(1,k,n)$.
 
 We then define the recurrence $t(i,i+1) = 0$ for all $i$, and $t(i,j)
-= min \{ t(i,k) + t(k,j) + w(i,k,j) \}$ where $i < k < j$.
+= min \{ t(i,k) + t(k,j) + w(i,k,j) \}$ for all $k$ such that $i < k < j$.
+
+We then compute all $t(i,i+1)$, then all $t(i,i+2)$, $t(i,i+3)$,
+... until we have calculated $t(1,n)$.
 
 \hypertarget{sec:floyd_warshall}{\section{All-Pairs Shortest Path (Floyd-Warshall)}}
 
