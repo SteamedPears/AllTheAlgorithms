@@ -48,6 +48,41 @@ in a DFS tree:
 \item A \emph{Cross Edge} goes to a non-ancestor non-descendant
 
 \end{enumerate}
+\begin{center}
+\begin{tikzpicture}[>=latex,scale=1.5]
+    \SetUpEdge[lw           = 1.0pt,
+               labelstyle   = {draw,sloped}]
+    \SetGraphUnit{1}
+    \GraphInit[vstyle=Normal] 
+    \tikzset{VertexStyle/.style = {
+    shape = circle,
+    inner sep = 0pt,
+    outer sep = 0pt,
+    minimum size = 6pt,
+    draw}}
+    \Vertex{G}
+    \NOEA(G){B}
+    \SOEA(G){F}
+    \EA(B){A}
+    \SOEA(A){C}
+    \SO(C){D}
+    \NO(F){E}
+    \tikzset{EdgeStyle/.style={->}}
+    \Edge[label=Cross,labelstyle={above,sloped,font=\tiny\bfseries}](C)(B)
+    \Edge[label=Tree,labelstyle={above,sloped,font=\tiny\bfseries}](A)(B)
+    \Edge[label=Tree,labelstyle={above,sloped,font=\tiny\bfseries}](A)(C)
+    \Edge[label=Tree,labelstyle={above,sloped,font=\tiny\bfseries}](B)(E)
+    \Edge[label=Tree,labelstyle={above,sloped,font=\tiny\bfseries}](E)(G)
+    \Edge[label=Tree,labelstyle={below,sloped,font=\tiny\bfseries}](B)(G)
+    \Edge[label=Tree,labelstyle={above,sloped,font=\tiny\bfseries}](G)(F)
+    \Edge[label=Tree,labelstyle={above,sloped,font=\tiny\bfseries}](C)(D)
+    \Edge[label=Cross,labelstyle={above,sloped,font=\tiny\bfseries}](D)(F)
+    \tikzset{EdgeStyle/.style={->,relative=false,in=150,out=100}}
+    \Edge[label=Forward,labelstyle={above,sloped,font=\tiny\bfseries}](A)(G)
+    \tikzset{EdgeStyle/.style={->,relative=false,in=0,out=0}}
+    \Edge[label=Back,labelstyle={above,sloped,font=\tiny\bfseries}](D)(A)
+\end{tikzpicture}
+\end{center}
 
 \begin{theorem}
 A digraph has a cycle if and only if a DFS reveals a back edge.
