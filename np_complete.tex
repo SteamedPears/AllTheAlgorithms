@@ -1,10 +1,84 @@
 \chapter{NP-Complete}
 
+The complexity class known as \emph{NP-Complete} is a special subset
+of $NP$, such that any problem in \emph{NP} can be translated to a
+problem in \emph{NP-Complete} in polynomial time.
+
 \section{CIRCUIT-SAT}
+
+Given a boolean circuit, is it possible to provide a set of inputs
+that cause the output to be \emph{True}?
+
+In 1971, Cook proved that \emph{CIRCUIT-SAT} is \emph{NP-Complete}.
+The proof is beyond the scope of these notes.  Cook showed that all
+operations of a polynomial-sized Turing machine can be performed in
+polynomial time using an instance of this problem.  In other words,
+Cook showed that a Turing machine can be implemented using circuits
+(surprise!!).
+
+\section{Reduction}
+
+Given at least one \emph{NP-Complete} problem, we can prove any other
+problem $L$ is \emph{NP-Complete} by showing that $L \in NP$ and that
+given an instance $x$ of a proven \emph{NP-Complete} problem we can
+translate $x$ to an instance of $L$ in polynomial time, such that by
+solving our generated instance of $L$, we can solve $x$.
+
+The steps to do this are:
+
+\begin{enumerate}
+\item Show $L \in NP$.  We do this by first showing that the
+  certificate for $L$ is polynomial with respect to the input, and
+  that a certificate for $L$ can be verified in polynomial time.
+
+\item Select a known \emph{NP-Complete} $L'$, ideally one that is
+  similar to $L$.
+
+\item Describe a polynomial time algorithm that maps any instance $x
+  \in L'$ to an instance $f(x) \in L$.
+
+\item Show that we can solve $x \in L'$ if and only if we can solve
+  $f(x) \in L$.
+\end{enumerate}
 
 \section{SAT}
 
+Given a boolean formula, are there values of the variables that cause
+the formula to be \emph{True}?
+
+First let us show that $SAT \in NP$ by using the truth values as a
+certificate, which is clearly polynomial in size because it is
+necessarily a subset of the input.  To verify, we evaluate the formula
+given the truth values and return the output.
+
+Next, we select \emph{CIRCUIT-SAT} from which to reduce to this
+problem.
+
+Then given an instance of \emph{CIRCUIT-SAT}, we transform the circuit
+to a boolean formula such that the circuit is satisfiable if and only
+if the formula is satisfiable.  We can do this easily by mapping gates
+to boolean operators.
+
+Since the instances of each problem are equivalent, it should be easy
+to see that one is satisfiable if and only if the other is.
+
 \section{3CNF-SAT}
+
+Is a given boolean formula in \emph{3CNF} form satisfiable?  A boolean
+formula is said to be in \emph{3CNF} form if there are no more than
+$3$ variables in each clause, and within a clause there are only
+\emph{OR} operators and between clauses there are only \emph{AND}
+operators.
+
+By the same proof as \emph{SAT} above, $3CNF-SAT \in NP$.
+
+We reduce from \emph{SAT}.  Given an instance of \emph{SAT}, we use
+equivalences to reduce all boolean operators to \emph{AND}, \emph{OR},
+and \emph{NOT}.  Then we use DeMorgan's law to put the formula into
+\emph{3CNF} form.
+
+Since the instances of each problem are equivalent, it should be easy
+to see that one is satisfiable if and only if the other is.
 
 \section{CLIQUE}
 
