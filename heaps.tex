@@ -18,8 +18,12 @@ ordering of the elements, but rather guarantees that the best element is
 at the root. Further, while heaps are usually discussed and defined
 as binary trees, they need not be implemented as such.
 A heap can in fact be implemented as an array with no performance reduction.
-To do so, we can implement a simple indexing. If an element is at the $i$th
-index in the array, it's left and right child are at the $2i+1$th and $2i+2$th 
+Contrary to standard theoretical convention, we will be using 0-indexed arrays
+rather than 1-indexed arrays. That is to say, the indexing will reflect how
+most programming languages perform indexing (0 is the first element, not 1).
+To represent a heap as an array, we can implement a simple indexing. 
+If an element is at the $i$th
+index in the array, its left and right child are at the $2i+1$th and $2i+2$th 
 indexes respectively. By placing the root at the $0$th index, all others follow.
 This is depicted below.
 {
