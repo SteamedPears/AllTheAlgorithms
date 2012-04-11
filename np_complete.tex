@@ -138,11 +138,73 @@ edge between $v^r_i$ and $v^s_j$ if and only if:
 
 \section{VERTEX-COVER}
 
+Given a graph $G=(V,E)$, does there exist a set of vertices $V'$ of
+size at most $k$ such that every edge in $E$ is incident to one vertex
+in $V'$?
+
+Let the certificate be the set of vertices $V'$.  This is a subset of
+$V$, so it is polynomial with respect to the input.  We can verify
+that $V'$ is of size at most $k$ by counting the vertices in $V'$.  We
+can verify that the vertices in $V'$ form a vertex cover of $G$ by
+checking that every edge in $E$ is incident to at least one vertex in
+$V'$ in polynomial time.
+
+We reduce from \emph{Clique}.  Let $\overline G = (V, \overline E)$ be
+the complement of the graph $G$, where $\overline E = \{ (u,v) | (u,v)
+\not \in E \}$.
+
+\begin{lemma}
+  $\overline G$ has a vertex cover of size $|V| - k$ if $G$ has a
+  clique of size $k$.
+\end{lemma}
+
+\begin{proof}
+  Assume $G$ has a clique $V'$ of size $k$.  $V \ V'$ is a vertex
+  cover of $G$.  Let $(u,v) \in \overline E$, $u$ and $v$ are not both
+  in $V'$.  Either $u$ or $v$ is in $V \ V'$.
+\end{proof}
+
+\begin{lemma}
+  $G$ has a clique of size $k$ if $\overline G$ has a vertex cover of
+  size $|V| - k$.
+\end{lemma}
+
+\begin{proof}
+  Assume $\overline G$ has a vertex cover $V'$ of size $|V| - k$.  For
+  all edges $(u,v) \in \overline E$, either $u$ is in $V'$ or $v$ is
+  in $V'$.  For all vertices $u$,$v$ and $u \neq v$ then if neither
+  $u$ nor $v$ is in $V'$ then $(u,v) \in E$.
+\end{proof}
+
+\begin{theorem}
+  $G$ has a clique of size $k$ if and only if $\overline G$ has a
+  vertex cover of size $|V| - k$.
+\end{theorem}
+
+\begin{proof}
+  This follows from the preceding lemmas.
+\end{proof}
+
+\section{HAM-CYCLE}
+
+Given a graph $G=(V,E)$, does there exist a cycle of at least size $k$
+that contains every vertex in $V$?
+
+The proof that this is \emph{NP-Complete} is beyond the scope of these
+notes, and not terribly interesting.
+
 \section{TSP}
 
 \section{SUBSET-SUM}
 
 \section{0/1-Integer Programming}
 
+Beyond the scope of these notes, but interesting.
+
 \section{3-COLOR}
+
+Given a graph $G=(V,E)$, can we label the vertices of a graph using 3
+colors such that no adjacent vertices have the same color?
+
+Beyond the scope of these notes, but interesting.
 
