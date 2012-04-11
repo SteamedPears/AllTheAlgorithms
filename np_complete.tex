@@ -187,13 +187,38 @@ the complement of the graph $G$, where $\overline E = \{ (u,v) | (u,v)
 
 \section{HAM-CYCLE}
 
-Given a graph $G=(V,E)$, does there exist a cycle of at least size $k$
-that contains every vertex in $V$?
+Given a graph $G=(V,E)$, does there exist a simple cycle of at least
+size $k$ that contains every vertex in $V$?
 
 The proof that this is \emph{NP-Complete} is beyond the scope of these
 notes, and not terribly interesting.
 
 \section{TSP}
+
+Given $G=(V,E)$ which is the complete graph on $n$ vertices and each
+edge $(u,v)$ has a cost $c(u,v)$, does $G$ have a cycle which visits
+each vertex (except the start) exactly once with total cost of at most
+$k$?  We call such a cycle a \emph{TSP-tour}
+
+Let the certificate be a permutation of the vertices which is
+$\BigOh{|V| + 1}$, so polynomial in size.  We can verify a certificate
+by summing the edges between each of the subsequent vertices in the
+permutation and checking that the sum is at most $k$.
+
+We reduce from \emph{HAM-CYCLE}.  Given a graph $G=(V,E)$ on which we
+would like to solve \emph{HAM-CYCLE}, we create $G'=(V,E')$ where $E'
+= \{ (u,v) | u,v \in V, u \neq v \}$.  And we create a cost function:
+
+\begin{math}
+  c(u,v) = \left\{ 
+    \begin{array}{l l}
+      0 & \text{if } (u,v) \in E \\
+      1 & \text{if } (u,v) \not \in E \\
+    \end{array} \right.
+\end{math}
+
+It should be easy to see that $G$ has a \emph{HAM-CYCLE} if and only
+if $G'$ has a \emph{TSP-tour} of $k \leq 0$.
 
 \section{SUBSET-SUM}
 
