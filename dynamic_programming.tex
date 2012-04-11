@@ -60,7 +60,26 @@ The time complexity of this solution is
 
 \section{Longest Common Subsequence}
 
-% going to have to look this up, apparently I missed it
+For a string $S = (s_1,s_2,\dots,s_n)$, a subsequence of $S$ is string $S'$ such that every element of $S'$ is in $S$, and if an element $a \in S'$ comes before $b \in S'$, this also holds for $S$. The longest common subsequence of two strings $A=(a_1,a_2,\dots,a_n)$ and $B = (b_1,b_2,\dots,b_m)$, is the longest string $C = (c_1,c_2,\dots,c_k)$, such that $C$ is a subsequence of $A$ and $B$.
+
+Let the substring $(s_i,s_{i+1},\dots,s_j)$ be denoted as $S(i,j)$. Further, let $LCS(i,j)$ to be the length of the LCS of $A(0,i)$ and $B(0,j)$. Assume that we have computed $C(1,k)$, and that it is unique. Then if we remove $c_k$ and everything after it from $B$ and $A$, $C(1,k-1)$ is now the LCS of our modified $A$ and $B$. 
+
+In general 
+$LCS(i,j) =$
+
+\begin{math}
+   \left\{
+    \begin{array}{l l}
+      \emptyset 		& \text{if $i=0$ or $j=0$}\\
+      LCS(i-1,j)+1 	& \text{if $a_i=b_j$}\\
+      					& \text{and $LCS(i-1,j)>LCS(i,j-1)$}\\
+      LCS(i,j-1)+1 	& \text{if $a_i=b_j$}\\
+      					& \text{and $LCS(i-1,j)<LCS(i,j-1)$}\\
+      
+    \end{array} \right.
+\end{math}
+
+To compute this, we compute $LCS(0,0)$, $LCS(0,1)$,\dots,$LCS(0,m)$; then $LCS(1,0)$,\dots,$LCS(1,m)$; \dots;$LCS(n,0)$,\dots,$LCS(n,m)$. At which point we have our solution, which is $LCS(n,m)$.
 
 \section{Optimal Triangulation of a Convex Polygon}
 
