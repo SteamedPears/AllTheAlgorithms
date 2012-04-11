@@ -222,6 +222,40 @@ if $G'$ has a \emph{TSP-tour} of $k \leq 0$.
 
 \section{SUBSET-SUM}
 
+Given a set $S$ of integers, does there exist a subset whose sum is
+exactly $k$?
+
+Let the certificate be the subset of $S$, which is clearly polynomial
+with respect to the input.  We can verify the subset by calculating
+the sum and comparing it to $k$ in polynomial time.
+
+We reduce from \emph{3CNF-SAT}.  Given a \emph{3CNF} formula over
+variables $x_1, ..., x_n$, and clauses $c_1,...,c_k$, we assume
+without loss of generality that all variables appear in at least one
+clause and no clause contains a variable and its negation.
+
+We create two tables the columns of which are labeled with the
+variables in order then the clauses in order.  
+
+The first table's rows are labeled by each variable followed by its
+negation.  The value in the table at a given row and column is 1
+either if the column is labeled with a variable and the row is labeled
+with either that variable or its negation; or the column is labeled
+with a clause and that clause contains exactly that variable (or
+exactly that negated variable).
+
+The second table's rows are labeled with $s_1,s_1'$ for $c_1$, and
+similarly for $c_2,...,c_k$.  The value in the row labeled $s_i$ is 1
+in the column labeled $c_i$, and the value in the row labeled $s_i'$
+is 2 in the column labeled $c_i$, and 0 otherwise.
+
+The rows of these tables give the digits of numbers in some base
+(let's say 10), and the target sum is the number with $n$ 1's followed
+by $k$ 4's.
+
+It should be easy to see that we can find a subset which is exactly
+the target if and only if the \emph{3CNF} formula is satisfiable.
+
 \section{0/1-Integer Programming}
 
 Beyond the scope of these notes, but interesting.
