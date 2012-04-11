@@ -113,8 +113,10 @@ excluding $v_k$ on the path.  This gives the recurrence:
 \begin{math}
   d^k_{i,j} = \left\{
     \begin{array}{l l}
-      weight((v_i,v_j)) & \text{if $k=0$ and $(v_i,v_j) \in E$} \\
-      \infty            & \text{if $k=0$ and $(v_i,v_j) \not \in E$} \\
+      weight((v_i,v_j)) & \text{if $k=0$ and} \\
+                        & (v_i,v_j) \in E \\
+      \infty            & \text{if $k=0$ and} \\
+                        & (v_i,v_j) \not \in E \\
       min \{ d^{k-1}_{i,j},d^{k-1}_{i,k} + d^{k-1}_{k,j} \} & \text{if $k>0$}
     \end{array} \right.
 \end{math}
@@ -122,7 +124,8 @@ excluding $v_k$ on the path.  This gives the recurrence:
 We then compute $d^0_{i,j}$ for all $v_i,v_j \in V$, then all
 $d^1_{i,j}$, $d^2_{i,j}$, ... until we have computed $d^{n-2}_{i,j}$.
 
-Running time: $\BigOh{n^3}$.  Analysis is left as an exercise to the reader.
+Running time: $\BigOh{n^3}$.  Analysis is left as an exercise to the
+reader.
 
 \section{Knapsack}
 
@@ -146,17 +149,39 @@ We then calculate $p(0), p(1), ..., p(W)$.
 
 The running time for this algorithm is $\BigOh{nW}$.  Notice that $W$
 requires $\BigOh{logW}$ bits to represent.  Since the input to the
-problem is $n$ and the $\BigOh{logW}$ bits needed to represent $W$,
-and $W = 2^{logW}$, the time complexity is $\BigOh{n2^{logW}}$ so
-this solution is exponential with respect to the input.
+problem is $\BigOh{n + logW}$, and $W = 2^{logW}$, the time complexity
+is $\BigOh{n2^{logW}}$ so this solution is exponential with respect to
+the input.
 
 \section{String Edit Distance}
 
 We define the edit distance between two strings as the minimum number
-of insertions, deletions, or replacements necessary to transform one
-string into another.
+of edits necessary to transform one string into another, where edits
+are insertions, deletions, or replacements of a single character.
 
-The problem is to compute this edit distance, given strings $X$ and
-$Y$.
+The problem is to compute this edit distance, given strings $X$ of
+length $m$ and $Y$ of length $n$.
+
+We start by defining the structure of an optimal solution.  Let us
+define $E[i,j]$ as the minimal edit distance between $X[1..i]$ and
+$Y[1..j]$.  We would like to know $E[m,n]$.
+
+It should be easy to see that $E[0,0] = 0$ and $E[1,1]$ is either $0$
+if $X[1] = Y[1]$ or $1$ otherwise.  $E[0,j] = j$ and $E[i,0] = i$.
+
+This gives the recurrence:
+
+\begin{math}
+  E[i,j] = \left\{
+    \begin{array}{l l}
+      0 & \text{if } i=0,j=0 \\
+      i & \text{if } j=0 \\
+      j & \text{if } i=0 \\
+      min \{ 1 + E[i-1,j], 1 + E[i,j-1], 1 + E[i-1,j-1] \} & \text{if } X[i] \neq Y[j] \\
+      min \{ 1 + E[i-1,j], 1 + E[i,j-1], E[i-1,j-1] \} & \text{otherwise} \\
+    \end{array} \right.
+\end{math}
+
+Then we calculate $E[i,j]$ from $i=0,j=0$ to $i=m,j=n$.
 
 
