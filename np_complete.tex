@@ -82,6 +82,60 @@ to see that one is satisfiable if and only if the other is.
 
 \section{CLIQUE}
 
+Given a simple, undirected graph $G$, find a \emph{complete} subgraph
+of $G$ of at least size $k$.
+
+Let the certificate be the set of vertices on which there is a
+complete subgraph.  Since this is necessarily a subset of the input
+vertices, it must be of polynomial size.  We can verify the set of
+vertices are complete by checking that every pair of vertices $i,j$
+where $i \neq j$ are adjacent, and we can easily check if the set is
+of size $k$ by counting them.
+
+We reduce from \emph{3CNF-SAT}.  Given an instance $\Phi$ of \emph{3CNF-SAT}
+with $k$ clauses, we would like to construct an instance of
+\emph{CLIQUE}.  Our graph has $3k$ vertices, one for each variable in
+each clause.  Clause $r$ has vertices $v^r_1,v^r_2,v^r_3$.  We put an
+edge between $v^r_i$ and $v^s_j$ if and only if:
+
+\begin{itemize}
+\item $r \neq s$
+\item their literals are consistent
+\end{itemize}
+
+\begin{lemma}
+  If $\Phi$ is satisfiable, then $G$ must contain a clique of size $k$.
+\end{lemma}
+
+\begin{proof}
+  Assume $\Phi$ is satisfiable, which is to say that $\Phi$ has a
+  satisfying truth assignment.  We select the vertices corresponding
+  to that truth assignment.  Since this truth assignment satisfies
+  $\Phi$, there must exist one selected vertex in each box.  Each of
+  these is connected to every vertex in a different box, therefore
+  there exists a clique in $G$.
+\end{proof}
+
+\begin{lemma}
+  If $G$ contains a clique of size $k$, then $\Phi$ is satisfiable.
+\end{lemma}
+
+\begin{proof}
+  Assume $G$ contains a clique of size $k$.  One vertex of the clique
+  must be in each box.  Assign all variables corresponding to the
+  vertices of the clique to be true.  This must be a satisfying
+  assignment because at least one true variable exists in each clause,
+  and there are no inconsistent truth values.
+\end{proof}
+
+\begin{theorem}
+  $\Phi$ is satisfiable if and only if $G$ contains a clique of size $k$.
+\end{theorem}
+
+\begin{proof}
+  This follows from the above lemmas.
+\end{proof}
+
 \section{VERTEX-COVER}
 
 \section{TSP}
