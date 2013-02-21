@@ -1,0 +1,142 @@
+\renewcommand{\Pr}{\text{Pr}}
+\newcommand{\Var}{\text{Var}}
+
+\chapter{Probability}
+
+Before we can discuss probablistic and randomized algorithms, we must
+first develop the tools necessary to rigorously discuss probability.
+
+We are concerned with the probability of sets of events, and for
+simplicity we will simply call these sets events.
+
+The probability of a event $A$ is $\Pr(A)$.  The probability of an
+event $A$ given that event $B$ has occured is $\Pr(A | B)$.
+
+The probability of events $A$ and $B$ both happening is
+
+\begin{center}
+\begin{math}
+\Pr(A \cap B)
+= \Pr(A|B)\Pr(B) = \Pr(A)\Pr(B|A)
+\end{math}
+\end{center}
+
+which is the definition of \emph{conjunctive probability}.
+
+The probability of either events $A$ or $B$ happening is
+
+\begin{center}
+\begin{math}
+  \Pr(A \cup B)
+  = \Pr(A) + \Pr(B) - \Pr(A \cap B)
+\end{math}
+\end{center}
+
+which is the definition of \emph{disjunctive probability}.
+
+If the outcome of event $A$ does not affect that of $B$, we say $A$
+and $B$ are \emph{independent}.
+
+If we have a set of independent events $S$, from the definition of
+disjunctive probability we get
+
+\begin{displaymath}
+  %
+  \Pr \left( \bigcup_{s \in S} s \right) = \sum_{s \in S} \Pr(s)
+  %
+\end{displaymath}
+
+which is the \emph{linearity of independent probability}.
+
+\section{Linearity of Expectation}
+
+Often, we are interested in the outcome of some event with intrinsic
+value, such as the result of rolling a die.  In this case, we may be
+interested in the average value.  Since not all values are equally
+likely, it is important to weight each value by its probability.  We
+call such a weighted average the \emph{Expected Value}.
+
+The expected value of a random variable $X$ is
+
+\begin{displaymath}
+  %
+  E(X) = \sum_{x \in X} x \cdot \Pr(x)
+  %
+\end{displaymath}
+
+which is the definition of \emph{expectation}.
+
+If we have two events $X$ and $Y$, we have
+
+\begin{center}
+\begin{math}
+  E(X + Y) = E(X) + E(Y)
+\end{math}
+\end{center}
+
+which is the \emph{linearity of expectation}.
+
+\section{Markov's Inequality}
+
+We often wish to establish bounds on probability, for which one
+important result is for any random variable $X$ and $a > 0$
+
+\begin{center}
+\begin{math}
+  \Pr(X \geq a) \leq \frac{E(X)}{a}
+\end{math}
+\end{center}
+
+which is \emph{Markov's Inequality}.
+
+\section{Variance}
+
+Given a random variable $X$ we have
+
+\begin{center}
+  \begin{math}
+    \Var (X) = E(X^2) - E(X)^2    
+  \end{math}
+\end{center}
+
+which is the definition of \emph{variance}.
+
+If we have an independent and identically distributed set of events
+$X$ then
+
+\begin{displaymath}
+  \Var (\sum_{x \in X} x) = \sum_{x \in X} \Var (x)
+\end{displaymath}
+
+\section{Chebyshev's Inequality}
+
+For any random variable $X$ and $a > 0$ we have
+
+\begin{center}
+  \begin{math}
+    \Pr ( | X - E(X) | \geq a ) \leq \frac{\Var{X}}{a^2}
+  \end{math}
+\end{center}
+
+which is \emph{Chebyshev's Inequality}.
+
+\section{Chernoff Bounds}
+
+Where $X$ is the sum of indicator random variables, for any $ \epsilon
+> 0 $ we have
+
+\begin{center}
+  \begin{math}
+    \Pr ( X \geq ( 1 + \epsilon ) E(X) ) \leq e^{ \frac{-\epsilon^2 E(X)}{3}}
+  \end{math}
+\end{center}
+
+and
+
+\begin{center}
+  \begin{math}
+    \Pr ( X \geq ( 1 - \epsilon ) E(X) ) \leq e^{ \frac{-\epsilon^2 E(X)}{2}}
+  \end{math}
+\end{center}
+
+which are \emph{Chernoff Bounds}.
